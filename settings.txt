@@ -1,0 +1,169 @@
+##############################################################################
+# 1.General settings
+##############################################################################
+
+# Dongle configuration (use lsusb to find yours)
+# Note that vendor id and product id are in decimals, not hex here
+#vendor-id = 4884 # 0x1314
+#product-id = 5408 # 0x1520
+
+# Requested image resolution
+#width = 720
+#height = 576
+
+# Requested image refresh rate
+#source-fps = 50
+
+# Application drawing target framerate. This can responsiveness.
+# If the setting is lower than source-fps the framse will be dropped
+# If the setting is not multiple of source-fps can still cause frame drops cause out-of-sync 
+# source images and drawing times
+#fps = 50 
+
+# Application starts in full screen
+#fullscreen = true
+
+# Enable generic console logging. Can reduce performace
+#logging = false 
+
+##############################################################################
+# 2.Device configurations
+##############################################################################
+
+# USB communication protocol encryption
+# From 2024 Carlinkit has an optinal USB protocol encryption
+# It can happened that it will become mandatory and device will not work withou it
+# So if you have updated your device and it stop working try to enable encryption
+#encryption = false
+
+# Enable automatic connection to wireless devices
+#autoconnect = true
+
+# Eanble weak charging current (standart usb 0.5A).
+# If you have a powerfull poswer supply you can try to disable this.
+# If you have troubles with wired connection try to enable this, cause it might be cause of power lack.
+#weak-charge = true
+
+# Driving position, true for left hand drive, false for right hand drive
+#left-hand-drive = true
+
+# Nigh mode. 0 for day mode, 1 for night mode, 2 for automatic
+#night-mode = 2
+
+# Enable 5Ghz wifi. Otherwise will use 2,4Ghz
+#wifi-5 = true
+
+# Enable bluetooth audio. If enables the audio will be played not through the dongle but through bluetooth connection
+#bluetooth-audio = false
+
+# Microphone in use. Copied directly from carlinkit app.
+# 1 - Car
+# 2 - Box
+# 3 - Phone
+#mic-type = 1   
+
+# Requested image DPI (Android auto scale)
+#android-dpi = 120
+
+# Android auto resolution mode.
+# Android is always streaming one of fixed resolutions
+# If you are using default android auto make sure that your widh and height
+# set up according to resolution. Or you can enable any resolution by developer menu.
+# For developer menu go to Android Auto app info -> Additional settings in the app
+# Scrol down and tap fast 5 times on version. Now you can use top right three dots menu
+# to go to "Developer settings". Tap "Video Resolution" and select "Allow to car and phone to negotiate"
+# 1 - 480p => 800x480
+# 2 - 720p => 1280x720
+# 3 - 1080p => 1920x1080 
+#android-resolution = 1
+
+# Media delay for android auto
+#android-media-delay = 300
+
+##############################################################################
+# 3.Application configuration
+##############################################################################
+
+# Font size for messgaes on screen. Set to 0 is you do not want any
+#font-size = 30
+
+# Enable vsync. This reduce tearing but can dramatically affect performance on low end systems 
+#vsync = false
+
+# Prefer HW decoding.
+# If you have input lag that means that your hardware decoder can't work in streaming mode
+# This is happening or Raspberry Pi Zero 2W. Disable this to use SW decoding for that case.
+#hw-decode = true
+
+# Corrects aspect of UI
+#aspect-correction = 1
+
+# Select faster method of scaling image to window size (nearest) or better quality (linear)
+#fast-render-scale = false
+
+# Size of video and audio buffers. Increase if you see artifacts
+#video-buffer-size = 32
+#audio-buffer-size = 32
+
+# Audio delay for music and calls. Fill the buffer to this value before start playing. 
+# Increase if you hear audio artifacts or tearing. Should be less than audio-buffer-size 
+#audio-buffer-wait = 2
+#audio-buffer-wait-call = 8
+
+# Reduce volume of main audio source when there is higher priority audio stream.
+# This will reduce volume of the music if there is navigation instructions
+# Reduction level from 1 (no reduction) to 0 (fully silenced)
+#audio-fade = 0.3
+
+# Force application to use following audio driver as audio output, if empty use default driver
+# See SDL documentation for options. Some of them are
+# alsa - Not supporting multiple channels, navigation over music will not work
+# pulseaudio
+# pipewire
+#audio-driver = 
+
+# Run script or app on phone connected and disconnected. 
+# This script/app should be fast, otherwise it will block system. 
+# If you need to start application in background use scripts with fork 
+# 
+#   #!/bin/bash
+#   MyApp &
+#   echo $! > app.pid
+#
+#   #!/bin/bash
+#   if [ -f app.pid ]; then
+#       kill $(cat app.pid)
+#       rm app.pid
+#   fi
+#
+#on-connect-script = 
+#on-disconnect-script = 
+
+# Map extra keys for control with there codes
+# If you set logging true you and press keys you will see there codes in logs
+#key-left = 0
+#key-right = 0
+#key-enter = 0
+#key-back = 0
+#key-home = 0
+
+##############################################################################
+# 4.Debug
+##############################################################################
+
+# Protocol debug level. Works only on builds only with PROTOCOL_DEBUG flag set.
+# Add -DPROTOCOL_DEBUG to CXXCOMMON to enable protocol debugging and rebuild.
+# 0 - nothing
+# 1 - unknown commands
+# 2 - all commands except data streams
+# 3 - include outgoing commands
+# 4 - log everything
+# protocol-debug = 0
+
+# Enable FFMPEG AV_CODEC_FLAG_LOW_DELAY for HW decoder.
+# Force low delay.
+#decode-low-delay = true
+
+# Enable FFMPEG AV_CODEC_FLAG2_FAST for HW decoder.
+# Allow non spec compliant speedup tricks.
+#decode-fast = false
